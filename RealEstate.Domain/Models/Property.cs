@@ -15,7 +15,7 @@ namespace RealEstate.Domain.Models
         public bool IsTrending { get; set; }
 
         public int CategoryId { get; set; }
-        public required Category Category { get; set; }
+        public Category? Category { get; set; }
 
         [JsonIgnore]
         public int UserId { get; set; }
