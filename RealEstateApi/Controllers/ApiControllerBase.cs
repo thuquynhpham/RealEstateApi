@@ -9,7 +9,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RealEstate.Api.Controllers
 {
-    [Authorize]
     [ApiController]
     public class ApiControllerBase : ControllerBase
     {

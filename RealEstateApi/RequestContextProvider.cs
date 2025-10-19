@@ -1,6 +1,7 @@
 ﻿using RealEstate.Core;
 using System.Security.Claims;
 
+#nullable enable
 namespace RealEstate.Api
 {
     public class RequestContextProvider(IHttpContextAccessor contextAccessor): IRequestContextProvider

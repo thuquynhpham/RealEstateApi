@@ -20,7 +20,7 @@ namespace RealEstate.Domain.Models
         [JsonIgnore]
         public int UserId { get; set; }
         [JsonIgnore]
-        public required User User { get; set; }
+        public User? User { get; set; }
 
 
     }

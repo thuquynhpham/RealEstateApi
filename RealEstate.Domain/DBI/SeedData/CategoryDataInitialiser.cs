@@ -1,4 +1,5 @@
 ﻿using RealEstate.Domain.Models;
+using System.Collections.Generic;
 
 namespace RealEstate.Domain.DBI.SeedData
 {

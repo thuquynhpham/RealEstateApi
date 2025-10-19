@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.Core", "RealEsta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.Domain", "RealEstate.Domain\RealEstate.Domain.csproj", "{412B2AD7-F754-49E2-A878-76E7472B1DF1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.UnitTest", "RealEstate.UnitTest\RealEstate.UnitTest.csproj", "{D5062312-212F-4D70-954E-7D509FC5446F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +31,16 @@ Global
 		{412B2AD7-F754-49E2-A878-76E7472B1DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{412B2AD7-F754-49E2-A878-76E7472B1DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{412B2AD7-F754-49E2-A878-76E7472B1DF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5062312-212F-4D70-954E-7D509FC5446F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5062312-212F-4D70-954E-7D509FC5446F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5062312-212F-4D70-954E-7D509FC5446F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5062312-212F-4D70-954E-7D509FC5446F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D5062312-212F-4D70-954E-7D509FC5446F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ACD74EFE-C582-4B17-8644-8B0B7B9EA9D6}

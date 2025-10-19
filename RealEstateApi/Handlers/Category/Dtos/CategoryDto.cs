@@ -14,7 +14,7 @@ namespace RealEstate.Api.Handlers.Category.Dtos
             {
                 CategoryId = category.CategoryId,
                 Name = category.Name,
-                ImageUrl = category.ImageUrl,
+                ImageUrl = category.ImageUrl!,
             };
         }
     }

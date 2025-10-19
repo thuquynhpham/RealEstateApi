@@ -1,12 +1,30 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using RealEstate.Api;
+using RealEstate.Core;
+using RealEstate.Domain.Repositories;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+    .AddUserSecrets<Program>(optional: true)
+    .AddEnvironmentVariables()
+    .Build();
+builder.Services.AddSingleton<IConfiguration>(configuration);
+
 // Add services to the container.
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 builder.Services.AddControllers();
+
+builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+{
+    options.SerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -37,6 +55,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //});
 
 builder.Services.AddResponseCaching();
+builder.Services.AddDbContext<RealEstate.Domain.DBI.RealEstateDbContext>(options =>
+    options.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=RealEstate", builder => builder.MigrationsAssembly("RealEstate.Api"))
+);
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddSingleton<IRequestContextProvider, RequestContextProvider>();
+builder.Services.AddSingleton(TimeProvider.System);
 
 var app = builder.Build();
 

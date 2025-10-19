@@ -1,4 +1,6 @@
-﻿namespace RealEstate.Domain.DBI.SeedData
+﻿using System.Collections.Generic;
+
+namespace RealEstate.Domain.DBI.SeedData
 {
     public abstract class DataInitialiserControl
     {

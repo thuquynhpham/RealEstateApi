@@ -1,4 +1,5 @@
-﻿using RealEstate.Api.Validation;
+﻿#nullable enable
+using RealEstate.Api.Validation;
 using System.Text.Json.Serialization;
 
 namespace RealEstate.Api.Handlers._Shared
@@ -48,7 +49,7 @@ namespace RealEstate.Api.Handlers._Shared
         public static T CreateServerError(string message) { return new T { ServerError = true, Message = message }; }
         public IEnumerable<RealEstateValidationError> ToValidationErrors()
         {
-            return new List<RealEstateValidationError> { ValidationError };
+            return new List<RealEstateValidationError> { ValidationError! };
         }
     }
 

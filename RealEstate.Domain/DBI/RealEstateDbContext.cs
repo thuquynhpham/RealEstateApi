@@ -22,13 +22,6 @@ namespace RealEstate.Domain.DBI
             });
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //var connectionString = _configuration["ConnectionStrings:local"];
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=RealEstate");
-            //optionsBuilder.UseSqlServer(@"Server=tcp:realestatedbserver.database.windows.net,1433;Initial Catalog=realestate002;Persist Security Info=False;User ID=quynh;Password=Planday#1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        }
-
         public void EnsureClean()
         {
             Database.EnsureClean();

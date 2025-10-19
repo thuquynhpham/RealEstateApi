@@ -1,16 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RealEstate.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace RealEstate.Domain.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        Task<TEntity?> GetAsync(int id, CancellationToken ct);
-        Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken ct, params Expression<Func<TEntity, object?>>[] includeProperties);
+        ValueTask<TEntity?> GetAsync(int id, CancellationToken ct);
+        Task<List<TEntity>> GetAllAsync(CancellationToken ct, params Expression<Func<TEntity, object?>>[] includeProperties);
         Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken ct, params Expression<Func<TEntity, object?>>[] includeProperties);
         Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken ct, params Expression<Func<TEntity, object?>>[] includeProperties);
-        Task AddAsync(TEntity entity, CancellationToken ct);
+        ValueTask AddAsync(TEntity entity, CancellationToken ct);
         Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken ct);
         void Update(TEntity entity);
         void Remove(TEntity entity);
@@ -30,12 +35,12 @@ namespace RealEstate.Domain.Repositories
             RequestContextProvider = requestContextProvider;
         }
 
-        public async Task<TEntity?> GetAsync(int id, CancellationToken ct)
+        public async ValueTask<TEntity?> GetAsync(int id, CancellationToken ct)
         {
             return await Context.Set<TEntity>().FindAsync(id, ct);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken ct, params Expression<Func<TEntity, object?>>[] includeProperties)
+        public async Task<List<TEntity>> GetAllAsync(CancellationToken ct, params Expression<Func<TEntity, object?>>[] includeProperties)
         {
             var context = GetQueryableContext();
             var query = context.AsQueryable();
@@ -62,7 +67,7 @@ namespace RealEstate.Domain.Repositories
             return await query.Where(predicate).ToListAsync(ct);
         }
 
-        public async Task AddAsync(TEntity entity, CancellationToken ct)
+        public async ValueTask AddAsync(TEntity entity, CancellationToken ct)
         {
             await Context.Set<TEntity>().AddAsync(entity, ct);
         }
