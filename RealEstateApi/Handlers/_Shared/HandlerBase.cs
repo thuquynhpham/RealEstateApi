@@ -2,13 +2,13 @@
 
 namespace RealEstate.Api.Handlers._Shared
 {
-    public abstract class CommandHandlerBase<TCommand>: IRequestHandler<TCommand, CommandApiResponse> where TCommand : ICommand
+    public abstract class CommandHandlerBase<T>: IRequestHandler<T, CommandApiResponse> where T : ICommand
     {
-        public abstract Task<CommandApiResponse> Handle(TCommand command, CancellationToken ct);
+        public abstract Task<CommandApiResponse> Handle(T command, CancellationToken ct);
     }
 
-    public abstract class QueryHandlerBase<TQuery, TResponse> : IRequestHandler<TQuery, TResponse> where TQuery : IQuery<TResponse> where TResponse: QueryApiResponse<TResponse>, new()
+    public abstract class QueryHandlerBase<T, TResponse> : IRequestHandler<T, TResponse> where T : IQuery<TResponse> where TResponse: QueryApiResponse<TResponse>, new()
     {
-        public abstract Task<TResponse> Handle(TQuery request, CancellationToken ct);
+        public abstract Task<TResponse> Handle(T request, CancellationToken ct);
     }
 }

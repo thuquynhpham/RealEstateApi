@@ -8,7 +8,7 @@ namespace RealEstate.Api.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UsersController(ILogger<CategoriesController> logger, IMediator mediator, IRequestContextProvider requestContextProvider) : ApiControllerBase(logger, mediator, requestContextProvider)
+    public class UsersController(ILogger<UsersController> logger, IMediator mediator, IRequestContextProvider requestContextProvider) : ApiControllerBase(logger, mediator, requestContextProvider)
     {
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserDto user, CancellationToken ct)

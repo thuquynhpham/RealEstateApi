@@ -88,9 +88,9 @@ namespace RealEstate.Api.Controllers
             //}
         }
 
-        protected DataContext GetDataContext()
-        {
-            return new DataContext();
-        }
+        //protected DataContext GetDataContext()
+        //{
+        //    return new DataContext();
+        //}
     }
 }

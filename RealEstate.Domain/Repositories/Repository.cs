@@ -20,7 +20,6 @@ namespace RealEstate.Domain.Repositories
         void Update(TEntity entity);
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
-
         Task<int> RemoveAll(CancellationToken ct);
 
     }
